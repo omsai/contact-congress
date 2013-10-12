@@ -38,9 +38,9 @@ selectoptions = re.compile(r'(?:<option.*?value\s*=\s*\")(.*?)(?:\")', re.IGNORE
 selecttext = re.compile(r'(?:<option.*?value.*?>)(.*?)(?:</)', re.IGNORECASE)
 inputname = re.compile(r'(?:<input.*?name\s*=\s*\")(.*?)(?:\")', re.IGNORECASE)
 inputselectors = re.compile(r'(?:<input.*?id\s*=\s*\")(.*?)(?:\")', re.IGNORECASE)
-for root,dirs,files in os.walk('.\input'):
+for root,dirs,files in os.walk('input'):
     for file in files:
-        with open('.\input\\' + file, 'r') as f:
+        with open('input' + os.sep + file, 'r') as f:
             html = f.read()
         #limit by form
         #input search
