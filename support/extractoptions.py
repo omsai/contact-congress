@@ -40,6 +40,10 @@ irrelevant as the script parses all files in the 'input/' folder).
 import os
 import re
 
+# If set True, prints "required: " attribute for fields that are not
+# required.
+ALLOW_EMPTY_REQUIRED = False
+
 YAMLselections = []
 
 #compile regular expressions
@@ -79,6 +83,8 @@ for root,dirs,files in os.walk('input'):
                     data = data + "$ADDRESS_STREET\n"
                 elif inputs[i].find("city") != -1:
                     data = data + "$ADDRESS_CITY\n"
+                elif inputs[i].find("state") != -1:
+                    data = data + "$ADDRESS_STATE_POSTAL_ABBREV\n"
                 elif inputs[i].find("email") != -1:
                     data = data + "$EMAIL\n"
                 elif inputs[i].find("phone") != -1:
@@ -89,11 +95,10 @@ for root,dirs,files in os.walk('input'):
                     data = data + "$MESSAGE\n"
                 else:
                     data = data + "\n"
-                data = data + "        " + "required: "
                 if inputs[i].find("required") != -1:
-                    data = data + "Yes\n"
-                else:
-                    data = data + "\n"
+                    data = data + "        " + "required: Yes\n"
+                elif ALLOW_EMPTY_REQUIRED:
+                    data = data + "        " + "required: \n"
             except IndexError:
                 data = data + "\ninputs may not match selectors\n"
         data = data + "      " + "- name: \n" + "        " + "selector: \"#\n" + "        " + "value: \n" + "        " + "required: \n"
