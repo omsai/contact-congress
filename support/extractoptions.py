@@ -1,27 +1,40 @@
 '''
-HOW TO USE:
-  This file:
-    Extracts the option "value" attributes, and creates a hash if the option's text does not match the option's value
-    Extracts all input name + value, and outputs a fill_in list (note that this will output for ALL <input> tags)
+Prints YAML code for member contact files by parsing HTML web pages.
+
+This script *partially* automates creating member contact YAML files
+by extracting form data.  However, be wary of the following:
+
+- Read the web page to verify the output. The parsing is not
+  guaranteed to be correct.
+
+- Ignore extraneous output.  The script parses all <input> tags to be
+  safe and not miss anything.
   
-  You should try to give this file inputs containing only the forms that you want to extract from.
+- Single quoted attributes don't work out of the box.  To parse them,
+  change the regex at the start of the script to:
 
-  Create a folder named "input" in the same location at this file.
+    selectoptions: r'(?:<option.*?value\s*=\s*)(\'.*?\')'
+    inputname: r'(?:<input.*?name\s*=\s*\')(.*?)(?:\')'
+    inputselectors: r'(?:<input.*?id\s*=\s*\')(.*?)(?:\')'
 
-  Copy the section of the HTML containing the form options that you
-    want to extract (does not have to be exact, you can even copy and paste
-    the entire HTML source code if you want, only there is less chance for
-    errors if you only copy/paste the section containing the form)
+Usage
+=====
 
-  Paste into a text file (NOT word) and save in the "input" folder.
+Save contact HTML forms into an 'input/' folder.
 
-  Run the .py file in python 3.3, and copy/paste the resulting output.
+Best practise is to only copy the HTML containing the form that you
+want to extract, as opposed to the entire HTML source code.  Using the
+entire source works, but may be more error prone than using a limted
+selection.
 
-  It is recommended to check the output for any errors. If the attribute is
-  in single quotes you can change this in the regular expressions below to
-  selectoptions: r'(?:<option.*?value\s*=\s*)(\'.*?\')'
-  inputname: r'(?:<input.*?name\s*=\s*\')(.*?)(?:\')'
-  inputselectors: r'(?:<input.*?id\s*=\s*\')(.*?)(?:\')'
+To extract a limited selection in Mozilla Firefox, open Tools > Web
+Developer > Inspector.  Mouse over the page till you enclose the
+contact form (a good place to start is the title of the form).  In the
+page source of the Inspector tool, right-click on the tag level and
+choose "Copy Inner HTML".  Save your clipboard contents into a new
+text file in the 'input/' folder (the filename extension is
+irrelevant; the script will try to parse all files in the 'input/'
+folder).
 '''
 
 import os
