@@ -30,11 +30,10 @@ selection.
 To extract a limited selection in Mozilla Firefox, open Tools > Web
 Developer > Inspector.  Mouse over the page till you enclose the
 contact form (a good place to start is the title of the form).  In the
-page source of the Inspector tool, right-click on the tag level and
-choose "Copy Inner HTML".  Save your clipboard contents into a new
-text file in the 'input/' folder (the filename extension is
-irrelevant; the script will try to parse all files in the 'input/'
-folder).
+page source of the Inspector tool, right-click on the highlighted tag
+level and choose "Copy Inner HTML".  Save your clipboard contents into
+a new text file in the 'input/' folder (the filename extension is
+irrelevant as the script parses all files in the 'input/' folder).
 '''
 
 import os
