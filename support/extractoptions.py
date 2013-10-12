@@ -6,10 +6,7 @@ HOW TO USE:
   
   You should try to give this file inputs containing only the forms that you want to extract from.
 
-  Copy this file to a separate location (so as not to send random files
-    to github)
-
-  Create a folder named "input" in the same location
+  Create a folder named "input" in the same location at this file.
 
   Copy the section of the HTML containing the form options that you
     want to extract (does not have to be exact, you can even copy and paste
