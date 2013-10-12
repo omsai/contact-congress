@@ -1,3 +1,4 @@
+#!/usr/bin/env python3.3
 '''
 Prints YAML code for member contact files by parsing HTML web pages.
 
